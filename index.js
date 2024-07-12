@@ -1,5 +1,6 @@
 /* Your Code Here */
 
+// Creates a new employee record from an array
 function createEmployeeRecord(employee) {
   return {
     firstName: employee[0],
@@ -10,10 +11,13 @@ function createEmployeeRecord(employee) {
     timeOutEvents: [],
   };
 }
+
+// Creates multiple employee records from an array of arrays
 function createEmployeeRecords(employeeData) {
   return employeeData.map((employee) => createEmployeeRecord(employee));
 }
 
+// Adds a timeIn event to an employee's record
 function createTimeInEvent(dateTime) {
   let [date, hour] = dateTime.split(" ");
   this.timeInEvents.push({
@@ -24,6 +28,7 @@ function createTimeInEvent(dateTime) {
   return this;
 }
 
+// Adds a timeOut event to an employee's record
 function createTimeOutEvent(dateTime) {
   let [date, hour] = dateTime.split(" ");
   this.timeOutEvents.push({
@@ -34,19 +39,24 @@ function createTimeOutEvent(dateTime) {
   return this;
 }
 
+// Calculates the hours worked on a specific date
 function hoursWorkedOnDate(date) {
   let inEvent = this.timeInEvents.find((event) => event.date === date);
   let outEvent = this.timeOutEvents.find((event) => event.date === date);
   return (outEvent.hour - inEvent.hour) / 100;
+}
 
+// Calculates the wages earned on a specific date
 function wagesEarnedOnDate(date) {
   return hoursWorkedOnDate.call(this, date) * this.payPerHour;
 }
 
+// Finds an employee by their first name
 function findEmployeeByFirstName(collection, firstNameString) {
   return collection.find((employee) => employee.firstName === firstNameString);
 }
 
+// Calculates the total payroll for all employees
 function calculatePayroll(employeeRecords) {
   return employeeRecords.reduce(
     (total, employee) => total + allWagesFor.call(employee),
